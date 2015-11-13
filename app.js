@@ -57,7 +57,9 @@ app.post('/store', function(req, res) {
       if (data.body['refresh_token']) { 
         spotifyApi.setRefreshToken(data.body['refresh_token']);
       }
-      if(req.body.text.indexOf(' - ') === -1) {
+      if (req.body.text.indexOf('list') == 0 && req.body.text.length == 4) {
+        return res.send("playlist content listing coming soon");
+      } else if(req.body.text.indexOf(' - ') === -1) {
         var query = 'track:' + req.body.text;
       } else { 
         var pieces = req.body.text.split(' - ');
